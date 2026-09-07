@@ -1,3 +1,16 @@
+:root {
+    --bg-dark: #061318;
+    --bg-panel: rgba(12, 23, 28, 0.92);
+    --bg-elevated: #0b1d22;
+    --border: rgba(138, 181, 188, 0.23);
+    --text: #edf7f8;
+    --muted: #a5bac0;
+    --accent: #7ecad1;
+    --accent-strong: #5ca9b4;
+    --error: #ff8e8e;
+    --shadow: rgba(5, 12, 16, 0.6);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +20,10 @@
 body {
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background: #080b0d;
-    color: #f5f5f5;
+    background:
+        radial-gradient(circle at top, rgba(126, 202, 209, 0.18), transparent 38%),
+        linear-gradient(135deg, #040c0f 0%, #091a1f 48%, #050b0d 100%);
+    color: var(--text);
 
     display: flex;
     justify-content: center;
@@ -19,22 +34,22 @@ body {
 
 .calculator {
     width: 100%;
-    max-width: 650px;
+    max-width: 680px;
 
-    background: #101518;
-    border: 1px solid #273237;
-    border-radius: 20px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 22px;
 
-    padding: 45px;
+    padding: 42px 38px 34px;
 
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 28px 70px var(--shadow);
+    backdrop-filter: blur(8px);
 }
-
 
 /* HEADER */
 
 .calculator-header {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .eyebrow {
@@ -42,28 +57,28 @@ body {
 
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
 
-    color: #6f9da8;
+    color: var(--accent);
 
     margin-bottom: 12px;
+    text-transform: uppercase;
 }
 
 .calculator-header h1 {
-    font-size: 42px;
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
     line-height: 1.1;
-
-    margin-bottom: 14px;
+    letter-spacing: -0.05em;
+    margin-bottom: 12px;
 }
 
 .calculator-header p {
-    max-width: 500px;
+    max-width: 520px;
 
-    color: #9ca8ac;
+    color: var(--muted);
     font-size: 15px;
     line-height: 1.7;
 }
-
 
 /* FORM */
 
@@ -75,9 +90,11 @@ body {
     display: block;
 
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 
     margin-bottom: 9px;
+    color: var(--text);
 }
 
 .input-wrapper {
@@ -87,41 +104,42 @@ body {
 .input-wrapper input {
     width: 100%;
 
-    padding: 16px 70px 16px 17px;
+    padding: 16px 78px 16px 16px;
 
-    background: #080b0d;
-    border: 1px solid #303c41;
-    border-radius: 10px;
+    background: rgba(4, 11, 14, 0.9);
+    border: 1px solid rgba(145, 175, 181, 0.2);
+    border-radius: 12px;
 
-    color: #f5f5f5;
+    color: var(--text);
     font-size: 16px;
 
     outline: none;
 
-    transition: 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .input-wrapper input::placeholder {
-    color: #657176;
+    color: #73858b;
 }
 
 .input-wrapper input:focus {
-    border-color: #6f9da8;
-    box-shadow: 0 0 0 3px rgba(111, 157, 168, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(126, 202, 209, 0.12);
+    transform: translateY(-1px);
 }
 
 .input-wrapper span {
     position: absolute;
 
-    right: 17px;
+    right: 16px;
     top: 50%;
 
     transform: translateY(-50%);
 
-    color: #69767b;
+    color: #98a9ae;
     font-size: 13px;
+    font-weight: 700;
 }
-
 
 /* BUTTON */
 
@@ -129,15 +147,16 @@ button {
     width: 100%;
 
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
 
     padding: 16px 20px;
 
-    background: #6f9da8;
-    color: #071012;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+    color: #04171b;
 
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: 0.03em;
 
     cursor: pointer;
 
@@ -146,54 +165,66 @@ button {
     justify-content: center;
     gap: 10px;
 
-    transition: 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 12px 22px rgba(92, 169, 180, 0.22);
 }
 
 button:hover {
-    background: #83b2bd;
-    transform: translateY(-1px);
+    filter: brightness(1.04);
+    transform: translateY(-2px);
 }
 
 button span {
     font-size: 20px;
 }
 
+.message {
+    margin-top: 22px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message.error {
+    background: rgba(255, 142, 142, 0.08);
+    border: 1px solid rgba(255, 142, 142, 0.35);
+    color: var(--error);
+}
 
 /* RESULTS */
 
 .results {
-    margin-top: 40px;
-    padding-top: 35px;
-
-    border-top: 1px solid #273237;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
 }
 
 .results-heading {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .results-heading h2 {
-    font-size: 21px;
+    font-size: 1.35rem;
 }
-
 
 /* RESULT CARDS */
 
 .result-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
 }
 
 .result-card {
-    background: #080b0d;
+    background: rgba(6, 18, 22, 0.85);
 
-    border: 1px solid #273237;
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
 
-    padding: 20px;
+    padding: 20px 18px;
 
-    min-height: 135px;
+    min-height: 138px;
 
     display: flex;
     flex-direction: column;
@@ -201,24 +232,25 @@ button span {
 }
 
 .result-label {
-    color: #8c999d;
+    color: #a1b2b8;
     font-size: 12px;
-
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
     margin-bottom: 10px;
 }
 
 .result-card strong {
-    font-size: 25px;
-    color: #f5f5f5;
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    color: var(--text);
+    line-height: 1.2;
 }
 
 .result-card small {
-    color: #637075;
+    color: #7a8d94;
     font-size: 11px;
-
-    margin-top: 5px;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
 }
-
 
 /* MOBILE */
 
@@ -229,12 +261,12 @@ button span {
     }
 
     .calculator {
-        padding: 30px 22px;
-        border-radius: 16px;
+        padding: 28px 20px 22px;
+        border-radius: 18px;
     }
 
-    .calculator-header h1 {
-        font-size: 32px;
+    .calculator-header {
+        margin-bottom: 22px;
     }
 
     .calculator-header p {
