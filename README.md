@@ -40,6 +40,41 @@ This project helped me practice:
 ## Formulas Used
 
 ### Circumference
-
-```text
 C = 2πr
+
+### Area
+A = πr²
+
+### Volume of a Sphere
+V = 4/3πr³
+
+Project Structure
+php-circle-calculator/
+│
+├── index.php
+├── style.css
+└── README.md
+How to Run
+
+Since this project uses PHP, you need a local PHP environment such as XAMPP.
+
+Clone the repository:
+-git clone https://github.com/Ini120/php-circle-calculator.git
+-Move the project into your XAMPP htdocs folder.
+-Start Apache from XAMPP.
+-Open the project in your browser:
+-http://localhost/php-circle-calculator/
+
+What I Learned:
+Through this project, I learned how to connect an HTML form to PHP and process user input on the server. I also practiced using PHP's built-in mathematical functions and conditional statements while creating a simple interactive web application.
+
+Future Improvements
+-Add input validation and error messages
+-Add a reset button
+-Allow users to perform additional geometric calculations
+-Improve the results section with more detailed explanations
+-Author
+
+Inioluwa Aiyenuyo
+
+GitHub: https://github.com/Ini120
